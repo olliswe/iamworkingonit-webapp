@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Terminal from "react-animated-term";
 import "react-animated-term/dist/react-animated-term.css";
 
@@ -45,7 +45,7 @@ const termLines = [
   },
   {
     text:
-      'Hermione Granger   "Refactoring the Dashboard" on branch feat/deathly-hollows',
+      'Hermione Granger   "Upgrading to v7.1" on branch feat/deathly-hallows',
     cmd: false,
   },
   {
@@ -69,8 +69,34 @@ const termLines = [
   },
 ];
 
-const AnimatedTerm = () => {
-  return <Terminal lines={termLines} interval={80} height={300} />;
+const AnimatedTerm = ({ initialDelay = 1000 }: { initialDelay?: number }) => {
+  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setStart(true);
+    }, initialDelay);
+    return () => clearTimeout(timeout);
+  }, [initialDelay]);
+
+  if (!start) {
+    return (
+      <Terminal
+        height={300}
+        lines={[
+          {
+            text: "",
+            cmd: true,
+          },
+        ]}
+        key={"emptyTerm"}
+      />
+    );
+  }
+
+  return (
+    <Terminal key={"realTerm"} lines={termLines} interval={80} height={300} />
+  );
 };
 
 export default AnimatedTerm;

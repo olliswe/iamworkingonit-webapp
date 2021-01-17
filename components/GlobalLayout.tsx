@@ -14,12 +14,6 @@ const GlobalLayout = ({ children }: any) => {
           as="font"
           crossOrigin=""
         />
-        <link
-          rel="preload"
-          href="/fonts/SaviaFilledShadowAntipixelcomar-rRmy.ttf"
-          as="font"
-          crossOrigin=""
-        />
       </Head>
       {children}
     </div>

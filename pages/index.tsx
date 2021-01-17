@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AnimatedTerm from "components/AnimatedTerm";
 import WorkingOnCard from "components/WorkingOnCard";
+import { ReactSVG } from "react-svg";
 
 export default function Home() {
   const [addCard, setAddCard] = useState(false);
@@ -14,7 +15,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="p-3">
+    <div className="p-3 pb-20 sm:pb-0 flex flex-col">
       <div>
         <span className="text-5xl sm:text-7xl text-white font-logo">
           I AM WORKING ON IT
@@ -33,7 +34,7 @@ export default function Home() {
               ...without ever leaving the terminal
             </span>
           </div>
-          <div className="flex-1 relative mt-5">
+          <div className="flex-1 relative mt-5" style={{ minHeight: 350 }}>
             <div
               className={`absolute transition-transform duration-500 ease-in-out`}
               style={{ transform: addCard ? "" : "translateX(200%)" }}
@@ -49,7 +50,6 @@ export default function Home() {
               className={`absolute transition-transform duration-500 ease-in-out`}
               style={{
                 transform: addCard ? "translateY(90px)" : "",
-                minHeight: 350,
               }}
             >
               <WorkingOnCard
@@ -72,6 +72,15 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <a
+        className="sm:absolute sm:bottom-2 sm:right-2 flex flex-row justify-center align-middle"
+        href="https://github.com/olliswe/iamworkingonit"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="text-sm mr-1 underline">Follow our progress on</span>
+        <ReactSVG src="images/github.svg" className="h-5 w-5 mr-1" />
+      </a>
     </div>
   );
 }

@@ -15,17 +15,9 @@ const GlobalLayout = ({ children }: any) => {
           as="font"
           crossOrigin=""
         />
+        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
       </Head>
       {children}
-      <a
-        className="absolute bottom-2 right-2 flex flex-row justify-center align-middle"
-        href="https://github.com/olliswe/iamworkingonit"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="text-sm mr-1 underline">Follow our progress on</span>
-        <ReactSVG src="images/github.svg" className="h-5 w-5 mr-1" />
-      </a>
     </div>
   );
 };

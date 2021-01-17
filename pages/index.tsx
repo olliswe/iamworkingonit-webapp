@@ -20,8 +20,8 @@ export default function Home() {
           I AM WORKING ON IT
         </span>
       </div>
-      <div className="mt-16 ml-7">
-        <span className="text-5xl text-white font-logo">
+      <div className="sm:mt-16 sm:ml-7 mt-5 ml-1">
+        <span className="text-4xl sm:text-5xl text-white font-logo">
           Let your team know what you're up to...
         </span>
         <div className="flex flex-col sm:flex-row">
@@ -29,7 +29,7 @@ export default function Home() {
             <div className="mt-5 mb-4 max-w-4xl" style={{ maxWidth: "41rem" }}>
               <AnimatedTerm />
             </div>
-            <span className="text-5xl text-white font-logo">
+            <span className="text-4xl sm:text-5xl text-white font-logo">
               ...without ever leaving the terminal
             </span>
           </div>
@@ -47,7 +47,10 @@ export default function Home() {
             </div>
             <div
               className={`absolute transition-transform duration-500 ease-in-out`}
-              style={{ transform: addCard ? "translateY(90px)" : "" }}
+              style={{
+                transform: addCard ? "translateY(90px)" : "",
+                minHeight: 350,
+              }}
             >
               <WorkingOnCard
                 name={"Hermione Granger"}

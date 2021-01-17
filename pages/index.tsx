@@ -19,6 +19,18 @@ export default function Home() {
         <title>I AM WORKING ON IT</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link
+          rel="preload"
+          href="fonts/SaviaShadowAntipixelcomar-YoJO.ttf"
+          as="font"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/SaviaFilledShadowAntipixelcomar-rRmy.ttf"
+          as="font"
+          crossOrigin=""
+        />
       </Head>
       <div className="min-h-screen w-screen bg-gradient-to-b from-primary-500 via-primary-400 to-primary-50">
         <div className="p-3">

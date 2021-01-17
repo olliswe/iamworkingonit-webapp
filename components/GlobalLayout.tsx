@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { ReactSVG } from "react-svg";
 
 const GlobalLayout = ({ children }: any) => {
   return (

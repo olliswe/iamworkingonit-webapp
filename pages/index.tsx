@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AnimatedTerm from "components/AnimatedTerm";
+import WorkingOnCard from "components/WorkingOnCard";
 
 export default function Home() {
   const [addCard, setAddCard] = useState(false);
@@ -32,7 +33,40 @@ export default function Home() {
               ...without ever leaving the terminal
             </span>
           </div>
-          <div className="flex-1">{addCard && "Hello"}</div>
+          <div className="flex-1 relative mt-5">
+            <div
+              className={`absolute transition-transform duration-500 ease-in-out`}
+              style={{ transform: addCard ? "" : "translateX(200%)" }}
+            >
+              <WorkingOnCard
+                name={"Harry Potter"}
+                avatar={"http://i.imgur.com/6Z85fUH.png"}
+                status={"Writing tests"}
+                lastUpdated={"Just now"}
+              />
+            </div>
+            <div
+              className={`absolute transition-transform duration-500 ease-in-out`}
+              style={{ transform: addCard ? "translateY(90px)" : "" }}
+            >
+              <WorkingOnCard
+                name={"Hermione Granger"}
+                avatar={"http://i.imgur.com/dOn1izd.png"}
+                status={"Upgrading to v7.1"}
+                lastUpdated={"30mins ago"}
+                githubUrl={
+                  "https://github.com/olliswe/iamworkingonit/tree/feat/deathly-hallows"
+                }
+                className="mb-2"
+              />
+              <WorkingOnCard
+                name={"Ron Weasely"}
+                avatar={"http://i.imgur.com/vgrMWkF.png"}
+                status={"Having lunch"}
+                lastUpdated={"1hr ago"}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

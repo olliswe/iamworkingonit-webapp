@@ -3,7 +3,7 @@ import Terminal from "react-animated-term";
 import "react-animated-term/dist/react-animated-term.css";
 
 const spinner = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
-//
+
 const termLines = [
   {
     text: 'workingon status "Writing tests"',
@@ -11,7 +11,7 @@ const termLines = [
     delay: 50,
   },
   {
-    text: "✔ Done",
+    text: "✔ Your status was updated",
     cmd: false,
     frames: spinner.map(function (spinner) {
       return {

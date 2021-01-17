@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import { ReactSVG } from "react-svg";
 
 const GlobalLayout = ({ children }: any) => {
   return (
@@ -16,6 +17,15 @@ const GlobalLayout = ({ children }: any) => {
         />
       </Head>
       {children}
+      <a
+        className="absolute bottom-2 right-2 flex flex-row justify-center align-middle"
+        href="https://github.com/olliswe/iamworkingonit"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="text-sm mr-1 underline">Follow our progress on</span>
+        <ReactSVG src="images/github.svg" className="h-5 w-5 mr-1" />
+      </a>
     </div>
   );
 };

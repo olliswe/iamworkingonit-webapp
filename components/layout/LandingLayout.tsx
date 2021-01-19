@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-const GlobalLayout = ({ children }: any) => {
+const LandingLayout = ({ children }: { children: React.ReactElement }) => {
   return (
     <div className="min-h-screen w-screen bg-gradient-to-br from-primary-600 via-primary-400 to-primary-100 overflow-x-hidden">
       <Head>
@@ -21,4 +21,4 @@ const GlobalLayout = ({ children }: any) => {
   );
 };
 
-export default GlobalLayout;
+export default LandingLayout;

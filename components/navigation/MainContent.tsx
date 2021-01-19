@@ -1,14 +1,12 @@
 import React from "react";
 
-const MainContent = () => {
+const MainContent = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="-mt-32">
       <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
-        {/* Replace with your content */}
         <div className="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
-          <div className="h-96 border-4 border-dashed border-gray-200 rounded-lg"></div>
+          <div style={{ minHeight: "24rem" }}>{children}</div>
         </div>
-        {/* /End replace */}
       </div>
     </main>
   );

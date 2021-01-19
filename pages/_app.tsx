@@ -1,12 +1,19 @@
 import type { AppProps /*, AppContext */ } from "next/app";
 import "styles/globals.css";
-import GlobalLayout from "components/GlobalLayout";
+import { PUBLIC_ROUTES } from "config/app";
+import LandingLayout from "components/layout/LandingLayout";
+import AppLayout from "components/layout/AppLayout";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const getLayout = (route: string) =>
+  PUBLIC_ROUTES.includes(route) ? LandingLayout : AppLayout;
+
+function MyApp({ Component, pageProps, router }: AppProps) {
+  const Layout = getLayout(router.route);
+
   return (
-    <GlobalLayout>
+    <Layout>
       <Component {...pageProps} />
-    </GlobalLayout>
+    </Layout>
   );
 }
 

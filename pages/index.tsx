@@ -3,7 +3,7 @@ import AnimatedTerm from "components/AnimatedTerm";
 import WorkingOnCard from "components/WorkingOnCard";
 import { ReactSVG } from "react-svg";
 
-export default function Home() {
+export default function Landing() {
   const [addCard, setAddCard] = useState(false);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React from "react";
-import MobileMainNav from "components/layout/MobileMainNav";
-import MobileProfileMenu from "components/layout/MobileProfileMenu";
+import MobileMainNav from "components/navigation/MobileMainNav";
+import MobileProfileMenu from "components/navigation/MobileProfileMenu";
 
 const MobileMenu = () => {
   return (

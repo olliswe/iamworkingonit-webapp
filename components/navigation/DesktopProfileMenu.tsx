@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
-import OutsideClickHandler from "react-outside-click-handler";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import ClickAwayListener from "react-click-away-listener";
 
 const DesktopProfileMenu = () => {
   const [open, setOpen] = useState(false);
@@ -19,7 +19,7 @@ const DesktopProfileMenu = () => {
   return (
     <div className="hidden lg:block lg:ml-4">
       <div className="flex items-center">
-        <OutsideClickHandler onOutsideClick={handleClose}>
+        <ClickAwayListener onClickAway={handleClose}>
           <div className="ml-3 relative flex-shrink-0">
             <div>
               <button
@@ -65,7 +65,7 @@ const DesktopProfileMenu = () => {
               </a>
             </div>
           </div>
-        </OutsideClickHandler>
+        </ClickAwayListener>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ const DesktopMainNav = ({ routes }: { routes: IMainRoutes[] }) => {
     <div className="hidden lg:block lg:ml-10">
       <div className="flex space-x-4">
         {routes.map((route) => (
-          <Link href={route.href}>
+          <Link href={route.href} key={route.href}>
             <a
               className={clsx([
                 "rounded-md py-2 px-3 text-sm font-medium",

@@ -3,7 +3,7 @@ import Head from "next/head";
 
 const GlobalLayout = ({ children }: any) => {
   return (
-    <div className="min-h-screen w-screen bg-gradient-to-br from-primary-500 via-primary-400 to-primary-100 overflow-x-hidden">
+    <div className="min-h-screen w-screen bg-gradient-to-br from-primary-600 via-primary-400 to-primary-100 overflow-x-hidden">
       <Head>
         <title>I AM WORKING ON IT</title>
         <link rel="icon" href="/favicon.ico" />

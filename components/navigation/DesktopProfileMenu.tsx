@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
-import clsx from "clsx";
+import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import ClickAwayListener from "react-click-away-listener";
+import { Transition } from "@headlessui/react";
 
 const DesktopProfileMenu = () => {
   const [open, setOpen] = useState(false);
-  const { pathname } = useRouter();
 
   const handleButtonClick = () => setOpen((prev) => !prev);
 
   const handleClose = () => setOpen(false);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <div className="hidden lg:block lg:ml-4">
@@ -36,16 +30,20 @@ const DesktopProfileMenu = () => {
                 />
               </button>
             </div>
-            <div
-              className={clsx([
-                "origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5",
-                open
-                  ? "transition ease-out duration-100 transform opacity-100 scale-100"
-                  : "transition ease-in duration-75 transform opacity-0 scale-95",
-              ])}
+            <Transition
+              show={open}
+              as="div"
+              className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="user-menu"
+              onClick={handleClose}
             >
               <Link href="/profile">
                 <a
@@ -63,7 +61,7 @@ const DesktopProfileMenu = () => {
               >
                 Sign out
               </a>
-            </div>
+            </Transition>
           </div>
         </ClickAwayListener>
       </div>

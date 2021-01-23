@@ -1,12 +1,14 @@
 import React from "react";
 
-const MobileMenuButton = () => {
+const MobileMenuButton = ({ setOpen }: { setOpen: ReactSetState<boolean> }) => {
+  const handleClick = () => setOpen((prev) => !prev);
   return (
     <div className="flex lg:hidden">
       {/* Mobile menu button */}
       <button
         className="bg-primary-600 p-2 rounded-md inline-flex items-center justify-center text-primary-200 hover:text-white hover:bg-primary-500 hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-600 focus:ring-white"
         aria-expanded="false"
+        onClick={handleClick}
       >
         <span className="sr-only">Open main menu</span>
         {/*

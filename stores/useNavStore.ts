@@ -7,7 +7,7 @@ type TNavStore = {
 
 const useNavStore = create<TNavStore>((set) => ({
   pageTitle: "",
-  setPage: (pageTitle) => set((state) => ({ pageTitle })),
+  setPage: (pageTitle) => set(() => ({ pageTitle })),
 }));
 
 export default useNavStore;

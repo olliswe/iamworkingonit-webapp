@@ -14,7 +14,7 @@ const TextInput = ({
   ...rest
 }: ITextInput) => {
   return (
-    <div>
+    <div className={wrapperClassName}>
       {label && (
         <label
           htmlFor="email"

@@ -14,11 +14,6 @@ const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
             <h3 className="text-gray-900 text-sm font-medium truncate">
               {user.firstName} {user.lastName}
             </h3>
-            {statusUpdate.type === "CLEARED" && (
-              <span className="flex-shrink-0 inline-block px-2 py-0.5 text-red-800 text-xs font-medium bg-red-100 rounded-full">
-                Status cleared
-              </span>
-            )}
           </div>
           <p className="mt-1 text-gray-500 text-sm truncate">3hrs ago</p>
         </div>
@@ -28,15 +23,26 @@ const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
           alt=""
         />
       </div>
-      {statusUpdate.status && (
-        <div>
-          <div className="-mt-px flex divide-x divide-gray-200">
-            <p className="py-3 px-4 text-sm font-medium">
-              {statusUpdate.status}
-            </p>
+      <div>
+        <div className="-mt-px flex divide-x divide-gray-200">
+          <div className="flex align-middle py-3 px-4 ">
+            {statusUpdate ? (
+              <>
+                {statusUpdate.type === "CLEARED" && (
+                  <span className="flex-shrink-0 inline-block px-2 py-0.5 text-red-800 text-xs font-medium bg-red-100 rounded-full mr-1">
+                    Status cleared
+                  </span>
+                )}
+                <p className="text-sm font-medium">{statusUpdate.status}</p>
+              </>
+            ) : (
+              <span className="flex-shrink-0 inline-block px-2 py-0.5 text-gray-800 text-xs font-medium bg-gray-100 rounded-full mr-1">
+                Not status yet
+              </span>
+            )}
           </div>
         </div>
-      )}
+      </div>
     </li>
   );
 };

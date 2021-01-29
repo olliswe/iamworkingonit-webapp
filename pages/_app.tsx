@@ -1,11 +1,12 @@
 import type { AppProps /*, AppContext */ } from "next/app";
 import "styles/globals.css";
-import { PUBLIC_ROUTES } from "config/app";
 import LandingLayout from "components/layout/LandingLayout";
 import AppLayout from "components/layout/AppLayout";
+import {ROUTES} from "../config/routes";
 
-const getLayout = (route: string) =>
-  PUBLIC_ROUTES.includes(route) ? LandingLayout : AppLayout;
+const getLayout = (route: string) => route.split('/')[1]===ROUTES.APP_ROOT.replace('/','') ?
+    AppLayout :
+    LandingLayout;
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const Layout = getLayout(router.route);

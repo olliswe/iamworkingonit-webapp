@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { useRouter } from "next/router";
+import { ROUTES } from "../../config/routes";
 
 const MobileProfileMenu = () => {
   const { pathname } = useRouter();
@@ -24,10 +25,10 @@ const MobileProfileMenu = () => {
         </div>
       </div>
       <div className="mt-3 px-2 space-y-1">
-        <Link href="/profile">
+        <Link href={ROUTES.PROFILE}>
           <a
             className={clsx(
-              pathname === "/profile"
+              pathname === ROUTES.PROFILE
                 ? "bg-primary-700 text-white"
                 : "text-white hover:bg-primary-500 hover:bg-opacity-75",
               "block rounded-md py-2 px-3 text-base font-medium"

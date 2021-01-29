@@ -8,6 +8,7 @@ import MainContent from "components/navigation/MainContent";
 import Head from "next/head";
 import Link from "next/link";
 import ClickAwayListener from "react-click-away-listener";
+import { ROUTES } from "../../config/routes";
 
 interface ILayout {
   children: React.ReactNode;
@@ -19,8 +20,8 @@ export interface IMainRoutes {
 }
 
 export const MAIN_ROUTES: IMainRoutes[] = [
-  { title: "Dashboard", href: "/dashboard" },
-  { title: "Team", href: "/team" },
+  { title: "Dashboard", href: ROUTES.DASHBOARD },
+  { title: "Team", href: ROUTES.TEAM }
 ];
 
 const AppLayout = ({ children }: ILayout) => {

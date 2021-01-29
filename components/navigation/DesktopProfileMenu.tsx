@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import ClickAwayListener from "react-click-away-listener";
 import { Transition } from "@headlessui/react";
+import { ROUTES } from "../../config/routes";
 
 const DesktopProfileMenu = () => {
   const [open, setOpen] = useState(false);
 
-  const handleButtonClick = () => setOpen((prev) => !prev);
+  const handleButtonClick = () => setOpen(prev => !prev);
 
   const handleClose = () => setOpen(false);
 
@@ -45,7 +46,7 @@ const DesktopProfileMenu = () => {
               aria-labelledby="user-menu"
               onClick={handleClose}
             >
-              <Link href="/profile">
+              <Link href={ROUTES.PROFILE}>
                 <a
                   className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
                   role="menuitem"

@@ -8,7 +8,10 @@ import MainContent from "components/navigation/MainContent";
 import Head from "next/head";
 import Link from "next/link";
 import ClickAwayListener from "react-click-away-listener";
-import { ROUTES } from "../../config/routes";
+import { ROUTES } from "config/routes";
+import useSession from "hooks/useSession";
+import { useRouter } from "next/router";
+import GlobalLoading from "../GlobalLoading";
 
 interface ILayout {
   children: React.ReactNode;
@@ -27,6 +30,16 @@ export const MAIN_ROUTES: IMainRoutes[] = [
 const AppLayout = ({ children }: ILayout) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const handleClickAway = () => setMobileMenu(false);
+  const router = useRouter();
+
+  const { isAuthenticated, loading } = useSession();
+
+  if (loading || !isAuthenticated) {
+    if (!loading && !isAuthenticated) {
+      router.push(ROUTES.INDEX);
+    }
+    return <GlobalLoading />;
+  }
 
   return (
     <>

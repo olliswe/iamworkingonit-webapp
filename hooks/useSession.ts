@@ -12,7 +12,11 @@ const useSession = () => {
     setLoading(false);
   }, [setLoading]);
 
-  return { user, loading, isAuthenticated };
+  const login = (email: string, password: string) => {
+    console.log(email, password);
+  };
+
+  return { user, loading, isAuthenticated, login };
 };
 
 export default useSession;

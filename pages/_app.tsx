@@ -3,18 +3,26 @@ import "styles/globals.css";
 import LandingLayout from "components/layout/LandingLayout";
 import AppLayout from "components/layout/AppLayout";
 import {ROUTES} from "../config/routes";
+import {createClient, Provider} from "urql";
 
 const getLayout = (route: string) => route.split('/')[1]===ROUTES.APP_ROOT.replace('/','') ?
     AppLayout :
     LandingLayout;
 
+const client = createClient({
+    url: 'http://localhost:3000/graphql',
+});
+
+
 function MyApp({ Component, pageProps, router }: AppProps) {
   const Layout = getLayout(router.route);
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+      <Provider value={client}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
   );
 }
 

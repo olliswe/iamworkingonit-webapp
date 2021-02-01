@@ -1,7 +1,33 @@
+import { ROUTES } from "config/routes";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import clsx from "clsx";
+import { Loader } from "components/elements/Loaders";
+import useSession from "../hooks/useSession";
 
 const Login = () => {
+  const [data, setData] = useState({ email: "", password: "" });
+  const [error, setError] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const { login } = useSession();
+
+  const handleChange = (event: any) => {
+    setData(prev => ({ ...prev, [event.target.name]: event.target.value }));
+  };
+
+  const isDisabled = !data.email || !data.password;
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    setError(null);
+    setLoading(true);
+    const { error } = await login(data);
+    if (error) {
+      setError(error);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -15,7 +41,12 @@ const Login = () => {
             Sign in to your account
           </h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form
+          className="mt-8 space-y-6"
+          action="#"
+          method="POST"
+          onSubmit={handleSubmit}
+        >
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -27,9 +58,11 @@ const Login = () => {
                 name="email"
                 type="email"
                 autoComplete="email"
+                value={data.email}
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -44,13 +77,15 @@ const Login = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
+                value={data.password}
+                onChange={handleChange}
               />
             </div>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="text-sm">
-              <Link href="/signup">
+              <Link href={ROUTES.SIGNUP}>
                 <a className="font-medium text-yellow-600 hover:text-yellow-500">
                   Sign up instead
                 </a>
@@ -69,11 +104,22 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+              className={clsx(
+                "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md h-10",
+                isDisabled
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+              )}
+              disabled={isDisabled}
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg
-                  className="h-5 w-5 text-yellow-500 group-hover:text-yellow-400"
+                  className={clsx(
+                    "h-5 w-5",
+                    isDisabled
+                      ? "text-gray-500"
+                      : "text-yellow-500 group-hover:text-yellow-400"
+                  )}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -86,8 +132,9 @@ const Login = () => {
                   />
                 </svg>
               </span>
-              Sign in
+              {loading ? <Loader /> : "Sign in"}
             </button>
+            {error && "Something went wrong!"}
           </div>
         </form>
       </div>

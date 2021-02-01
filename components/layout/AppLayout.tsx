@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DesktopMainNav from "components/navigation/DesktopMainNav";
 import MobileMenuButton from "components/navigation/MobileMenuButton";
 import DesktopProfileMenu from "components/navigation/DesktopProfileMenu";
@@ -34,9 +34,13 @@ const AppLayout = ({ children }: ILayout) => {
 
   const { isAuthenticated, loading } = useSession();
 
+  useEffect(() => {
+    console.log(isAuthenticated);
+  }, [isAuthenticated]);
+
   if (loading || !isAuthenticated) {
     if (!loading && !isAuthenticated) {
-      router.push(ROUTES.INDEX);
+      router.push(ROUTES.LOGIN);
     }
     return <GlobalLoading />;
   }

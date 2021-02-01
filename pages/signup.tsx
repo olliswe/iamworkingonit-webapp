@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import TextInput from "components/elements/TextInput";
+import { ROUTES } from "../config/routes";
 
 const Login = () => {
   return (
@@ -27,7 +28,7 @@ const Login = () => {
 
           <div className="flex items-center justify-between">
             <div className="text-sm">
-              <Link href="/login">
+              <Link href={ROUTES.LOGIN}>
                 <a className="font-medium text-yellow-600 hover:text-yellow-500">
                   Sign in instead
                 </a>

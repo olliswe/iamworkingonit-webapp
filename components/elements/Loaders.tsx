@@ -1,4 +1,4 @@
-import { BounceLoader, FadeLoader } from "react-spinners";
+import { BounceLoader } from "react-spinners";
 
 export const Loader = ({
   color = "white",

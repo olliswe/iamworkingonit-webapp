@@ -1,5 +1,4 @@
 import React from "react";
-import usePage from "hooks/usePage";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
@@ -16,8 +15,6 @@ const getTabClassName = (active: boolean) =>
   );
 
 const Dashboard = () => {
-  usePage("Dashboard");
-
   const {
     query: { tab }
   } = useRouter();
@@ -49,6 +46,10 @@ const Dashboard = () => {
       </div>
     </div>
   );
+};
+
+Dashboard.getInitialProps = async () => {
+  return { pageName: "Dashboard" };
 };
 
 export default Dashboard;

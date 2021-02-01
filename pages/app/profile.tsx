@@ -1,10 +1,11 @@
 import React from "react";
-import usePage from "hooks/usePage";
 
 const Profile = () => {
-  usePage("Profile");
-
   return <div>Profile</div>;
+};
+
+Profile.getInitialProps = async () => {
+  return { pageName: "Profile" };
 };
 
 export default Profile;

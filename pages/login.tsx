@@ -3,13 +3,12 @@ import Link from "next/link";
 import React, { useState } from "react";
 import clsx from "clsx";
 import { Loader } from "components/elements/Loaders";
-import useSession from "../hooks/useSession";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const { login } = useSession();
+  const login = async () => ({ error: "" });
 
   const handleChange = (event: any) => {
     setData(prev => ({ ...prev, [event.target.name]: event.target.value }));

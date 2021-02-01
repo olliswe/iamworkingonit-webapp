@@ -16,10 +16,11 @@ const client = createClient({
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const Layout = getLayout(router.route);
+  console.log(pageProps)
 
   return (
       <Provider value={client}>
-        <Layout>
+        <Layout {...pageProps}>
           <Component {...pageProps} />
         </Layout>
       </Provider>

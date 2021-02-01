@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DesktopMainNav from "components/navigation/DesktopMainNav";
 import MobileMenuButton from "components/navigation/MobileMenuButton";
 import DesktopProfileMenu from "components/navigation/DesktopProfileMenu";
@@ -9,12 +9,10 @@ import Head from "next/head";
 import Link from "next/link";
 import ClickAwayListener from "react-click-away-listener";
 import { ROUTES } from "config/routes";
-import useSession from "hooks/useSession";
-import { useRouter } from "next/router";
-import GlobalLoading from "../GlobalLoading";
 
 interface ILayout {
   children: React.ReactNode;
+  pageName?: string;
 }
 
 export interface IMainRoutes {
@@ -27,23 +25,9 @@ export const MAIN_ROUTES: IMainRoutes[] = [
   { title: "Team", href: ROUTES.TEAM }
 ];
 
-const AppLayout = ({ children }: ILayout) => {
+const AppLayout = ({ children, pageName }: ILayout) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const handleClickAway = () => setMobileMenu(false);
-  const router = useRouter();
-
-  const { isAuthenticated, loading } = useSession();
-
-  useEffect(() => {
-    console.log(isAuthenticated);
-  }, [isAuthenticated]);
-
-  if (loading || !isAuthenticated) {
-    if (!loading && !isAuthenticated) {
-      router.push(ROUTES.LOGIN);
-    }
-    return <GlobalLoading />;
-  }
 
   return (
     <>
@@ -82,7 +66,7 @@ const AppLayout = ({ children }: ILayout) => {
               <MobileMenu open={mobileMenu} routes={MAIN_ROUTES} />
             </nav>
           </ClickAwayListener>
-          <PageHeader />
+          <PageHeader pageName={pageName || ""} />
         </div>
         <MainContent>{children}</MainContent>
       </div>

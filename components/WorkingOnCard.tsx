@@ -16,7 +16,7 @@ const WorkingOnCard = ({
   status,
   lastUpdated,
   githubUrl,
-  className = "",
+  className = ""
 }: IWorkingOnCard) => {
   return (
     <div
@@ -50,7 +50,7 @@ const WorkingOnCard = ({
                   <ReactSVG src="images/github.svg" className="h-5 w-5 mr-1" />
                   <span className="sm:block hidden text-sm underline">
                     {githubUrl.replace(
-                      "https://github.com/olliswe/iamworkingonit/tree/",
+                      "https://github.com/olliswe/iamworkingonit-webapp/tree/",
                       ""
                     )}
                   </span>

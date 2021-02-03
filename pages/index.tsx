@@ -49,7 +49,7 @@ export default function Landing() {
             <div
               className={`absolute transition-transform duration-500 ease-in-out`}
               style={{
-                transform: addCard ? "translateY(90px)" : "",
+                transform: addCard ? "translateY(90px)" : ""
               }}
             >
               <WorkingOnCard
@@ -58,7 +58,7 @@ export default function Landing() {
                 status={"Upgrading to v7.1"}
                 lastUpdated={"30mins ago"}
                 githubUrl={
-                  "https://github.com/olliswe/iamworkingonit/tree/feat/deathly-hallows"
+                  "https://github.com/olliswe/iamworkingonit-webapp/tree/feat/deathly-hallows"
                 }
                 className="mb-2"
               />
@@ -74,7 +74,7 @@ export default function Landing() {
       </div>
       <a
         className="sm:absolute sm:bottom-2 sm:right-2 flex flex-row justify-center align-middle"
-        href="https://github.com/olliswe/iamworkingonit"
+        href="https://github.com/olliswe/iamworkingonit-cli"
         target="_blank"
         rel="noopener noreferrer"
       >

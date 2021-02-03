@@ -7,14 +7,16 @@ import { IMainRoutes } from "components/layout/AppLayout";
 const MobileMenu = ({
   open,
   routes,
+  onLogout
 }: {
   open: boolean;
   routes: IMainRoutes[];
+  onLogout: any;
 }) => {
   return (
     <div className={clsx("lg:hidden", !open && "hidden")}>
       <MobileMainNav routes={routes} />
-      <MobileProfileMenu />
+      <MobileProfileMenu onLogout={onLogout} />
     </div>
   );
 };

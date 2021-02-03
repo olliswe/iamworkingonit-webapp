@@ -1,29 +1,28 @@
 import type { AppProps /*, AppContext */ } from "next/app";
 import "styles/globals.css";
-import LandingLayout from "components/layout/LandingLayout";
+import PublicLayout from "components/layout/PublicLayout";
 import AppLayout from "components/layout/AppLayout";
-import {ROUTES} from "../config/routes";
-import {createClient, Provider} from "urql";
+import {ROUTES} from "config/routes";
+import {useApollo} from "apollo/apolloClient";
+import {ApolloProvider} from "@apollo/client";
 
 const getLayout = (route: string) => route.split('/')[1]===ROUTES.APP_ROOT.replace('/','') ?
     AppLayout :
-    LandingLayout;
+    PublicLayout;
 
-const client = createClient({
-    url: 'http://localhost:3000/graphql',
-});
 
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const Layout = getLayout(router.route);
-  console.log(pageProps)
+    const apolloClient = useApollo(pageProps)
 
-  return (
-      <Provider value={client}>
+
+    return (
+      <ApolloProvider client={apolloClient}>
         <Layout {...pageProps}>
           <Component {...pageProps} />
         </Layout>
-      </Provider>
+      </ApolloProvider>
   );
 }
 

@@ -4,8 +4,8 @@ const Team = () => {
   return <div>Hello from team</div>;
 };
 
-Team.getInitialProps = async () => {
-  return { pageName: "Team" };
-};
+export async function getServerSideProps() {
+  return { props: { pageName: "team" } };
+}
 
 export default Team;

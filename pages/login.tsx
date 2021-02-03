@@ -3,12 +3,13 @@ import Link from "next/link";
 import React, { useState } from "react";
 import clsx from "clsx";
 import { Loader } from "components/elements/Loaders";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const login = async () => ({ error: "" });
+  const { login } = useAuth();
 
   const handleChange = (event: any) => {
     setData(prev => ({ ...prev, [event.target.name]: event.target.value }));

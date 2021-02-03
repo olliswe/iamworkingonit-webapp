@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import ClickAwayListener from "react-click-away-listener";
 import { Transition } from "@headlessui/react";
-import { ROUTES } from "../../config/routes";
+import { ROUTES } from "config/routes";
+import Avatar from "components/elements/Avatar";
+import useMe from "hooks/useMe";
 
-const DesktopProfileMenu = () => {
+const DesktopProfileMenu = ({ onLogout }: { onLogout: any }) => {
   const [open, setOpen] = useState(false);
+  const { data } = useMe(true);
 
   const handleButtonClick = () => setOpen(prev => !prev);
 
@@ -24,11 +27,7 @@ const DesktopProfileMenu = () => {
                 aria-haspopup="true"
               >
                 <span className="sr-only">Open user menu</span>
-                <img
-                  className="rounded-full h-8 w-8"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
+                {data?.user && <Avatar user={data.user} />}
               </button>
             </div>
             <Transition
@@ -59,6 +58,7 @@ const DesktopProfileMenu = () => {
                 href="#"
                 className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
                 role="menuitem"
+                onClick={onLogout}
               >
                 Sign out
               </a>

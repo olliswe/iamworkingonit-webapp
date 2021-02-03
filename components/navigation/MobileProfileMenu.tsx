@@ -2,25 +2,30 @@ import React from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import { ROUTES } from "../../config/routes";
+import { ROUTES } from "config/routes";
+import useMe from "hooks/useMe";
+import Avatar from "components/elements/Avatar";
 
-const MobileProfileMenu = () => {
+const MobileProfileMenu = ({ onLogout }: { onLogout: any }) => {
   const { pathname } = useRouter();
+  const { data } = useMe();
+
+  if (!data?.user) {
+    return <div />;
+  }
 
   return (
     <div className="pt-4 pb-3 border-t border-primary-700">
       <div className="px-5 flex items-center">
         <div className="flex-shrink-0">
-          <img
-            className="rounded-full h-10 w-10"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
+          <Avatar user={data.user} />
         </div>
         <div className="ml-3">
-          <div className="text-base font-medium text-white">Tom Cook</div>
+          <div className="text-base font-medium text-white">
+            {data.user.firstName} {data.user.lastName}
+          </div>
           <div className="text-sm font-medium text-primary-300">
-            tom@example.com
+            {data.user.email}
           </div>
         </div>
       </div>
@@ -41,6 +46,7 @@ const MobileProfileMenu = () => {
         <a
           href="#"
           className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-primary-500 hover:bg-opacity-75"
+          onClick={onLogout}
         >
           Sign out
         </a>

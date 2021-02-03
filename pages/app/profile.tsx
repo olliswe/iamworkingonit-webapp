@@ -4,8 +4,8 @@ const Profile = () => {
   return <div>Profile</div>;
 };
 
-Profile.getInitialProps = async () => {
-  return { pageName: "Profile" };
-};
+export async function getServerSideProps() {
+  return { props: { pageName: "profile" } };
+}
 
 export default Profile;

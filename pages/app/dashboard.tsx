@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import clsx from "clsx";
 import LatestTab from "components/dashboard/LatestTab";
 import TimelineTab from "components/dashboard/TimelineTab";
-import { ROUTES } from "../../config/routes";
+import { ROUTES } from "config/routes";
 
 const getTabClassName = (active: boolean) =>
   clsx(
@@ -48,8 +48,8 @@ const Dashboard = () => {
   );
 };
 
-Dashboard.getInitialProps = async () => {
-  return { pageName: "Dashboard" };
-};
+export async function getServerSideProps() {
+  return { props: { pageName: "dashboard" } };
+}
 
 export default Dashboard;

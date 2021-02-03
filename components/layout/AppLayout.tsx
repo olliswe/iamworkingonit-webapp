@@ -9,6 +9,9 @@ import Head from "next/head";
 import Link from "next/link";
 import ClickAwayListener from "react-click-away-listener";
 import { ROUTES } from "config/routes";
+import useMe from "hooks/useMe";
+import GlobalLoading from "components/GlobalLoading";
+import useAuth from "hooks/useAuth";
 
 interface ILayout {
   children: React.ReactNode;
@@ -28,6 +31,23 @@ export const MAIN_ROUTES: IMainRoutes[] = [
 const AppLayout = ({ children, pageName }: ILayout) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const handleClickAway = () => setMobileMenu(false);
+  const { logout } = useAuth();
+
+  const handleLogoutClick = async (e: any) => {
+    e.preventDefault();
+    await logout();
+  };
+
+  const { data, loading, error } = useMe();
+
+  if (loading) {
+    return <GlobalLoading />;
+  }
+
+  if (!loading && (!data || !!error)) {
+    logout();
+    return <GlobalLoading />;
+  }
 
   return (
     <>
@@ -60,10 +80,14 @@ const AppLayout = ({ children, pageName }: ILayout) => {
                     <DesktopMainNav routes={MAIN_ROUTES} />
                   </div>
                   <MobileMenuButton setOpen={setMobileMenu} />
-                  <DesktopProfileMenu />
+                  <DesktopProfileMenu onLogout={handleLogoutClick} />
                 </div>
               </div>
-              <MobileMenu open={mobileMenu} routes={MAIN_ROUTES} />
+              <MobileMenu
+                open={mobileMenu}
+                routes={MAIN_ROUTES}
+                onLogout={handleLogoutClick}
+              />
             </nav>
           </ClickAwayListener>
           <PageHeader pageName={pageName || ""} />

@@ -1,5 +1,5 @@
-import { TOKEN_PATH } from "../config/app";
-import { useUserQuery } from "../apollo/codegen";
+import { TOKEN_PATH } from "config/app";
+import { useUserQuery } from "apollo/codegen";
 import jwtDecode from "jwt-decode";
 import get from "lodash/get";
 

@@ -4,6 +4,7 @@ export const ROUTES = {
   DASHBOARD: "/app/dashboard",
   TEAM: "/app/team",
   PROFILE: "/app/profile",
-  LOGIN: "/login",
-  SIGNUP: "/signup"
+  AUTH_ROOT: "/auth",
+  LOGIN: "/auth/login",
+  SIGNUP: "/auth/signup"
 };

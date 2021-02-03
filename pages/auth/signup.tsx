@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import TextInput from "components/elements/TextInput";
-import { ROUTES } from "../config/routes";
+import { ROUTES } from "config/routes";
 
 const Login = () => {
   return (
@@ -9,7 +9,7 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <Link href="/">
-            <h1 className="font-logo text-center text-5xl text-yellow-500">
+            <h1 className="font-logo text-center text-5xl text-yellow-500 cursor-pointer">
               I AM WORKING ON IT
             </h1>
           </Link>

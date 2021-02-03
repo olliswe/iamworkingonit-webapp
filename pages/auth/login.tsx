@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import clsx from "clsx";
 import { Loader } from "components/elements/Loaders";
-import useAuth from "../hooks/useAuth";
+import useAuth from "hooks/useAuth";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
@@ -33,7 +33,7 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <Link href="/">
-            <h1 className="font-logo text-center text-5xl text-yellow-500">
+            <h1 className="font-logo text-center text-5xl text-yellow-500 cursor-pointer">
               I AM WORKING ON IT
             </h1>
           </Link>

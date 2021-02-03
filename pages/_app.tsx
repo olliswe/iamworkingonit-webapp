@@ -5,10 +5,20 @@ import AppLayout from "components/layout/AppLayout";
 import {ROUTES} from "config/routes";
 import {useApollo} from "apollo/apolloClient";
 import {ApolloProvider} from "@apollo/client";
+import AuthLayout from "components/layout/AuthLayout";
 
-const getLayout = (route: string) => route.split('/')[1]===ROUTES.APP_ROOT.replace('/','') ?
-    AppLayout :
-    PublicLayout;
+
+const getLayout = (route: string) => {
+        const baseRoute  = route.split('/')[1]
+    switch (baseRoute){
+        case ROUTES.APP_ROOT.replace('/',''):
+            return AppLayout
+        case ROUTES.AUTH_ROOT.replace('/',''):
+            return AuthLayout
+        default:
+            return PublicLayout
+    }
+}
 
 
 

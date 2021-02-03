@@ -1,7 +1,7 @@
-import { useLoginMutation } from "../apollo/codegen";
+import { useLoginMutation } from "apollo/codegen";
 import { useRouter } from "next/router";
-import { TOKEN_PATH } from "../config/app";
-import { ROUTES } from "../config/routes";
+import { TOKEN_PATH } from "config/app";
+import { ROUTES } from "config/routes";
 import { useApolloClient } from "@apollo/client";
 
 const useAuth = () => {

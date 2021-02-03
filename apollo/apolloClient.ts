@@ -3,7 +3,7 @@ import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { concatPagination } from "@apollo/client/utilities";
 import merge from "deepmerge";
 import { setContext } from "@apollo/client/link/context";
-import { BACKEND_ORIGIN, TOKEN_PATH } from "../config/app";
+import { BACKEND_ORIGIN, TOKEN_PATH } from "config/app";
 import { ApolloLink } from "apollo-link";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";

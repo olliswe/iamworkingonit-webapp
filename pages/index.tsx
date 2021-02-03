@@ -3,7 +3,7 @@ import AnimatedTerm from "components/AnimatedTerm";
 import WorkingOnCard from "components/WorkingOnCard";
 import { ReactSVG } from "react-svg";
 
-export default function Home() {
+export default function Landing() {
   const [addCard, setAddCard] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Home() {
       </div>
       <div className="sm:mt-16 sm:ml-7 mt-5 ml-1">
         <span className="text-4xl sm:text-5xl text-white font-logo">
-          Let your team know what you're up to...
+          Let your team know what you&apos;re up to...
         </span>
         <div className="flex flex-col sm:flex-row">
           <div className="flex-1">

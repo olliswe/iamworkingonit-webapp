@@ -36,7 +36,9 @@ const WorkingOnCard = ({
             <p className="text-xs text-gray-400">{lastUpdated}</p>
           </div>
           <div className="flex-row flex justify-between">
-            <p className="text-sm text-gray-500 truncate">"{status}"</p>
+            <p className="text-sm text-gray-500 truncate">
+              &quot;{status}&quot;
+            </p>
             {githubUrl && (
               <div className="flex flex-row align-middle">
                 <a

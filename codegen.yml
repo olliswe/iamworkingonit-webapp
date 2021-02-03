@@ -1,0 +1,9 @@
+overwrite: true
+schema: "./schema.gql"
+documents: "./graphql/**.gql"
+generates:
+  ./apollo/codegen.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

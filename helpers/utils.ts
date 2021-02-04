@@ -1,0 +1,1 @@
+export const hasEmptyField = (object:{[key:string]:string}) => Object.values(object).some(x=>!x)

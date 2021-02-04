@@ -4,7 +4,7 @@ import clsx from "clsx";
 interface ITextInput extends InputHTMLAttributes<HTMLInputElement> {
   wrapperClassName?: string;
   label?: string;
-  error?: string;
+  error?: any;
 }
 
 const TextInput = ({
@@ -14,10 +14,10 @@ const TextInput = ({
   ...rest
 }: ITextInput) => {
   return (
-    <div className={wrapperClassName}>
+    <div className={wrapperClassName || ""}>
       {label && (
         <label
-          htmlFor="email"
+          htmlFor={rest.name}
           className="block text-sm font-medium text-gray-700"
         >
           {label}
@@ -51,7 +51,7 @@ const TextInput = ({
           </div>
         )}
       </div>
-      <p className="mt-2 text-sm text-red-600">{error}</p>
+      <p className="mt-1 pl-3 h-1 text-sm text-red-600">{error}</p>
     </div>
   );
 };

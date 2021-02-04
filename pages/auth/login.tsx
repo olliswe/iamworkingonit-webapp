@@ -47,7 +47,6 @@ const Login = () => {
           method="POST"
           onSubmit={handleSubmit}
         >
-          <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="email-address" className="sr-only">
@@ -134,7 +133,9 @@ const Login = () => {
               </span>
               {loading ? <Loader /> : "Sign in"}
             </button>
-            {error && "Something went wrong!"}
+            <div className="h-2 text-center text-red-700 mt-1">
+              {error && "Sorry, something went wrong!"}
+            </div>
           </div>
         </form>
       </div>

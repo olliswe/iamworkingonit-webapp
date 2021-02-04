@@ -1,8 +1,10 @@
 import React from "react";
+import { getTimeSince } from "helpers/utils";
+import { TTeamUser, TTeamUserStatusUpdate } from "models/types";
 
 interface ILatestStatusCard {
-  user: any;
-  statusUpdate: any;
+  user: TTeamUser;
+  statusUpdate?: TTeamUserStatusUpdate | null;
 }
 
 const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
@@ -15,7 +17,11 @@ const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
               {user.firstName} {user.lastName}
             </h3>
           </div>
-          <p className="mt-1 text-gray-500 text-sm truncate">3hrs ago</p>
+          {statusUpdate && (
+            <p className="mt-1 text-gray-500 text-sm truncate">
+              {getTimeSince(statusUpdate.createdAt)}
+            </p>
+          )}
         </div>
         <img
           className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"

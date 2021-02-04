@@ -40,8 +40,6 @@ const AppLayout = ({ children, pageName }: ILayout) => {
 
   const { data, loading, error } = useMe();
 
-  console.log(data, error);
-
   if (loading) {
     return <GlobalLoading />;
   }

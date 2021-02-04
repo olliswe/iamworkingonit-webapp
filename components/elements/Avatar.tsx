@@ -1,5 +1,5 @@
 import React from "react";
-import { TUser } from "models/user";
+import { TUser } from "models/types";
 
 const Avatar = ({ user }: { user: TUser }) => {
   return (

@@ -27,14 +27,7 @@ const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
         <div className="-mt-px flex divide-x divide-gray-200">
           <div className="flex align-middle py-3 px-4 ">
             {statusUpdate ? (
-              <>
-                {statusUpdate.type === "CLEARED" && (
-                  <span className="flex-shrink-0 inline-block px-2 py-0.5 text-red-800 text-xs font-medium bg-red-100 rounded-full mr-1">
-                    Status cleared
-                  </span>
-                )}
-                <p className="text-sm font-medium">{statusUpdate.status}</p>
-              </>
+              <p className="text-sm font-medium">{statusUpdate.status}</p>
             ) : (
               <span className="flex-shrink-0 inline-block px-2 py-0.5 text-gray-800 text-xs font-medium bg-gray-100 rounded-full mr-1">
                 Not status yet

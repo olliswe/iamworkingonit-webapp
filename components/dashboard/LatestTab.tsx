@@ -1,7 +1,8 @@
 import React from "react";
 import LatestStatusCard from "components/statusCard/LatestStatusCard";
+import { TTeam } from "models/types";
 
-const LatestTab = () => {
+const LatestTab = ({ team }: { team: TTeam }) => {
   return (
     <>
       <div>
@@ -51,22 +52,14 @@ const LatestTab = () => {
         </div>
       </div>
       <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <LatestStatusCard
-          user={{ firstName: "John", lastName: "Doe" }}
-          statusUpdate={{ status: "Refactoring dashboard" }}
-        />
-        <LatestStatusCard
-          user={{ firstName: "Mary", lastName: "Jane" }}
-          statusUpdate={{ status: "Writing tests" }}
-        />
-        <LatestStatusCard
-          user={{ firstName: "Mark", lastName: "Twain" }}
-          statusUpdate={{ status: "", type: "CLEARED" }}
-        />
-        <LatestStatusCard
-          user={{ firstName: "Mark", lastName: "Twain" }}
-          statusUpdate={null}
-        />
+        {team.users &&
+          team.users.map(user => (
+            <LatestStatusCard
+              user={user}
+              statusUpdate={user.statusupdates && user.statusupdates[0]}
+              key={user.id}
+            />
+          ))}
       </ul>
     </>
   );

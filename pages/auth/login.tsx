@@ -24,8 +24,8 @@ const Login = () => {
     const { error } = await login(data);
     if (error) {
       setError(error);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

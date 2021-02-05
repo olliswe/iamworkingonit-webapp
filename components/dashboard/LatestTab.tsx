@@ -6,7 +6,7 @@ const LatestTab = ({ team }: { team: TTeam }) => {
   return (
     <>
       <div>
-        <div className="mb-5 lg:w-2/3 sm:pr-2 flex rounded-md shadow-sm ">
+        <div className="mb-5 flex rounded-md shadow-sm ">
           <div className="relative flex items-stretch flex-grow focus-within:z-10">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg

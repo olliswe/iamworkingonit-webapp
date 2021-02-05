@@ -5,6 +5,7 @@ import clsx from "clsx";
 import LatestTab from "components/dashboard/LatestTab";
 import TimelineTab from "components/dashboard/TimelineTab";
 import { ROUTES } from "config/routes";
+import { useTeamQuery } from "apollo/codegen";
 
 const getTabClassName = (active: boolean) =>
   clsx(
@@ -21,6 +22,12 @@ const Dashboard = () => {
 
   const isTabOne = !tab || tab === "team";
   const isTabTwo = tab === "updates";
+
+  const { data } = useTeamQuery();
+
+  if (!data?.team) {
+    return null;
+  }
 
   return (
     <div>
@@ -39,7 +46,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={clsx(!isTabOne && "hidden", "mt-5")}>
-        <LatestTab />
+        <LatestTab team={data.team} />
       </div>
       <div className={clsx(!isTabTwo && "hidden", "mt-5")}>
         <TimelineTab />

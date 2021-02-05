@@ -53,20 +53,29 @@ export type Team = {
   __typename?: 'Team';
   /** Id of team */
   id: Scalars['String'];
+  /** Avatar of Team (URL) */
   avatar?: Maybe<Scalars['String']>;
   /** Name of team */
   teamName: Scalars['String'];
+  /** Latest Statusupdates of a Team */
   statusupdates?: Maybe<Array<Statusupdate>>;
-  users: Array<User>;
+  /** Users of a Team */
+  users?: Maybe<Array<User>>;
   secret: Teamsecret;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+};
+
+
+export type TeamStatusupdatesArgs = {
+  limit?: Maybe<Scalars['Int']>;
 };
 
 export type User = {
   __typename?: 'User';
   /** id */
   id: Scalars['String'];
+  /** Avatar of User (URL) */
   avatar?: Maybe<Scalars['String']>;
   /** First name of user */
   firstName: Scalars['String'];
@@ -82,6 +91,11 @@ export type User = {
   updatedAt: Scalars['DateTime'];
 };
 
+
+export type UserStatusupdatesArgs = {
+  limit?: Maybe<Scalars['Int']>;
+};
+
 export type LoginOutput = {
   __typename?: 'LoginOutput';
   accessToken: Scalars['String'];
@@ -91,24 +105,11 @@ export type Query = {
   __typename?: 'Query';
   user: User;
   team: Team;
-  statusupdates: Array<Statusupdate>;
-};
-
-
-export type QueryUserArgs = {
-  id: Scalars['String'];
 };
 
 
 export type QueryTeamArgs = {
   queryTeamInput?: Maybe<QueryTeamInput>;
-};
-
-
-export type QueryStatusupdatesArgs = {
-  teamId?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  userId?: Maybe<Scalars['String']>;
 };
 
 export type QueryTeamInput = {
@@ -121,9 +122,9 @@ export type Mutation = {
   login: LoginOutput;
   createUser: User;
   joinTeam: User;
+  createStatusupdate: Statusupdate;
   createTeam: Team;
   generateSecret: Teamsecret;
-  createStatusupdate: Statusupdate;
 };
 
 
@@ -147,13 +148,13 @@ export type MutationJoinTeamArgs = {
 };
 
 
-export type MutationCreateTeamArgs = {
-  createTeamInput: CreateTeamInput;
+export type MutationCreateStatusupdateArgs = {
+  createStatusupdateInput: CreateStatusupdateInput;
 };
 
 
-export type MutationCreateStatusupdateArgs = {
-  createStatusupdateInput: CreateStatusupdateInput;
+export type MutationCreateTeamArgs = {
+  createTeamInput: CreateTeamInput;
 };
 
 export type CreateUserInput = {
@@ -179,14 +180,14 @@ export type JoinTeamInput = {
   secret: Scalars['String'];
 };
 
-export type CreateTeamInput = {
-  /** Team Name */
-  teamName: Scalars['String'];
-};
-
 export type CreateStatusupdateInput = {
   /** Content of Status Update */
   status: Scalars['String'];
+};
+
+export type CreateTeamInput = {
+  /** Team Name */
+  teamName: Scalars['String'];
 };
 
 export type CreateStatusupdateMutationVariables = Exact<{
@@ -201,7 +202,7 @@ export type CreateStatusupdateMutation = (
     & Pick<Statusupdate, 'id' | 'status' | 'createdAt' | 'updatedAt'>
     & { user?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'firstName' | 'lastName'>
+      & Pick<User, 'id' | 'email' | 'firstName' | 'lastName'>
     )>, team?: Maybe<(
       { __typename?: 'Team' }
       & Pick<Team, 'id' | 'teamName'>
@@ -280,51 +281,37 @@ export type SignupMutation = (
   ) }
 );
 
-export type StatusupdatesQueryVariables = Exact<{
-  userId: Scalars['String'];
-  limit?: Maybe<Scalars['Int']>;
-}>;
-
-
-export type StatusupdatesQuery = (
-  { __typename?: 'Query' }
-  & { statusupdates: Array<(
-    { __typename?: 'Statusupdate' }
-    & Pick<Statusupdate, 'createdAt' | 'status'>
-    & { user?: Maybe<(
-      { __typename?: 'User' }
-      & Pick<User, 'id' | 'firstName' | 'lastName'>
-    )>, team?: Maybe<(
-      { __typename?: 'Team' }
-      & Pick<Team, 'id' | 'teamName'>
-    )> }
-  )> }
-);
-
-export type TeamQueryVariables = Exact<{
-  limit: Scalars['Int'];
-}>;
+export type TeamQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TeamQuery = (
   { __typename?: 'Query' }
   & { team: (
     { __typename?: 'Team' }
-    & Pick<Team, 'teamName'>
-    & { users: Array<(
+    & Pick<Team, 'id' | 'teamName'>
+    & { statusupdates?: Maybe<Array<(
+      { __typename?: 'Statusupdate' }
+      & Pick<Statusupdate, 'status'>
+      & { user?: Maybe<(
+        { __typename?: 'User' }
+        & Pick<User, 'email'>
+      )> }
+    )>>, users?: Maybe<Array<(
       { __typename?: 'User' }
-      & Pick<User, 'id' | 'firstName' | 'lastName' | 'email'>
+      & Pick<User, 'id' | 'email' | 'firstName' | 'lastName'>
       & { statusupdates?: Maybe<Array<(
         { __typename?: 'Statusupdate' }
         & Pick<Statusupdate, 'id' | 'createdAt' | 'status'>
+        & { team?: Maybe<(
+          { __typename?: 'Team' }
+          & Pick<Team, 'teamName'>
+        )> }
       )>> }
-    )> }
+    )>> }
   ) }
 );
 
-export type UserQueryVariables = Exact<{
-  userId: Scalars['String'];
-}>;
+export type UserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type UserQuery = (
@@ -335,7 +322,10 @@ export type UserQuery = (
     & { team?: Maybe<(
       { __typename?: 'Team' }
       & Pick<Team, 'id' | 'teamName'>
-    )> }
+    )>, statusupdates?: Maybe<Array<(
+      { __typename?: 'Statusupdate' }
+      & Pick<Statusupdate, 'createdAt' | 'status'>
+    )>> }
   ) }
 );
 
@@ -349,6 +339,7 @@ export const CreateStatusupdateDocument = gql`
     updatedAt
     user {
       id
+      email
       firstName
       lastName
     }
@@ -558,63 +549,29 @@ export function useSignupMutation(baseOptions?: Apollo.MutationHookOptions<Signu
 export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
-export const StatusupdatesDocument = gql`
-    query Statusupdates($userId: String!, $limit: Int = 1) {
-  statusupdates(userId: $userId, limit: $limit) {
-    createdAt
-    status
-    user {
-      id
-      firstName
-      lastName
-    }
-    team {
-      id
-      teamName
-    }
-  }
-}
-    `;
-
-/**
- * __useStatusupdatesQuery__
- *
- * To run a query within a React component, call `useStatusupdatesQuery` and pass it any options that fit your needs.
- * When your component renders, `useStatusupdatesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useStatusupdatesQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *      limit: // value for 'limit'
- *   },
- * });
- */
-export function useStatusupdatesQuery(baseOptions: Apollo.QueryHookOptions<StatusupdatesQuery, StatusupdatesQueryVariables>) {
-        return Apollo.useQuery<StatusupdatesQuery, StatusupdatesQueryVariables>(StatusupdatesDocument, baseOptions);
-      }
-export function useStatusupdatesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<StatusupdatesQuery, StatusupdatesQueryVariables>) {
-          return Apollo.useLazyQuery<StatusupdatesQuery, StatusupdatesQueryVariables>(StatusupdatesDocument, baseOptions);
-        }
-export type StatusupdatesQueryHookResult = ReturnType<typeof useStatusupdatesQuery>;
-export type StatusupdatesLazyQueryHookResult = ReturnType<typeof useStatusupdatesLazyQuery>;
-export type StatusupdatesQueryResult = Apollo.QueryResult<StatusupdatesQuery, StatusupdatesQueryVariables>;
 export const TeamDocument = gql`
-    query Team($limit: Int!) {
-  team(queryTeamInput: {limit: $limit}) {
+    query Team {
+  team {
+    id
     teamName
+    statusupdates(limit: 1) {
+      status
+      user {
+        email
+      }
+    }
     users {
       id
+      email
       firstName
       lastName
-      email
-      statusupdates {
+      statusupdates(limit: 1) {
         id
         createdAt
         status
+        team {
+          teamName
+        }
       }
     }
   }
@@ -633,11 +590,10 @@ export const TeamDocument = gql`
  * @example
  * const { data, loading, error } = useTeamQuery({
  *   variables: {
- *      limit: // value for 'limit'
  *   },
  * });
  */
-export function useTeamQuery(baseOptions: Apollo.QueryHookOptions<TeamQuery, TeamQueryVariables>) {
+export function useTeamQuery(baseOptions?: Apollo.QueryHookOptions<TeamQuery, TeamQueryVariables>) {
         return Apollo.useQuery<TeamQuery, TeamQueryVariables>(TeamDocument, baseOptions);
       }
 export function useTeamLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TeamQuery, TeamQueryVariables>) {
@@ -647,8 +603,8 @@ export type TeamQueryHookResult = ReturnType<typeof useTeamQuery>;
 export type TeamLazyQueryHookResult = ReturnType<typeof useTeamLazyQuery>;
 export type TeamQueryResult = Apollo.QueryResult<TeamQuery, TeamQueryVariables>;
 export const UserDocument = gql`
-    query User($userId: String!) {
-  user(id: $userId) {
+    query User {
+  user {
     id
     firstName
     lastName
@@ -659,6 +615,10 @@ export const UserDocument = gql`
     team {
       id
       teamName
+    }
+    statusupdates(limit: 1) {
+      createdAt
+      status
     }
   }
 }
@@ -676,11 +636,10 @@ export const UserDocument = gql`
  * @example
  * const { data, loading, error } = useUserQuery({
  *   variables: {
- *      userId: // value for 'userId'
  *   },
  * });
  */
-export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+export function useUserQuery(baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
         return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, baseOptions);
       }
 export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {

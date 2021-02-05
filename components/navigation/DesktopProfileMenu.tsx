@@ -5,6 +5,7 @@ import { Transition } from "@headlessui/react";
 import { ROUTES } from "config/routes";
 import Avatar from "components/elements/Avatar";
 import useMe from "hooks/useMe";
+import TeamDropdown from "components/TeamDropdown";
 
 const DesktopProfileMenu = ({ onLogout }: { onLogout: any }) => {
   const [open, setOpen] = useState(false);
@@ -15,7 +16,8 @@ const DesktopProfileMenu = ({ onLogout }: { onLogout: any }) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div className="hidden lg:block lg:ml-4">
+    <div className="hidden lg:flex lg:ml-4">
+      <TeamDropdown />
       <div className="flex items-center">
         <ClickAwayListener onClickAway={handleClose}>
           <div className="ml-3 relative flex-shrink-0">

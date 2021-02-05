@@ -1,8 +1,10 @@
 import React from "react";
+import { getTimeSince } from "helpers/utils";
+import { TTeamUser, TTeamUserStatusUpdate } from "models/types";
 
 interface ILatestStatusCard {
-  user: any;
-  statusUpdate: any;
+  user: TTeamUser;
+  statusUpdate?: TTeamUserStatusUpdate | null;
 }
 
 const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
@@ -15,7 +17,11 @@ const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
               {user.firstName} {user.lastName}
             </h3>
           </div>
-          <p className="mt-1 text-gray-500 text-sm truncate">3hrs ago</p>
+          {statusUpdate && (
+            <p className="mt-1 text-gray-500 text-sm truncate">
+              {getTimeSince(statusUpdate.createdAt)}
+            </p>
+          )}
         </div>
         <img
           className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"
@@ -27,14 +33,7 @@ const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
         <div className="-mt-px flex divide-x divide-gray-200">
           <div className="flex align-middle py-3 px-4 ">
             {statusUpdate ? (
-              <>
-                {statusUpdate.type === "CLEARED" && (
-                  <span className="flex-shrink-0 inline-block px-2 py-0.5 text-red-800 text-xs font-medium bg-red-100 rounded-full mr-1">
-                    Status cleared
-                  </span>
-                )}
-                <p className="text-sm font-medium">{statusUpdate.status}</p>
-              </>
+              <p className="text-sm font-medium">{statusUpdate.status}</p>
             ) : (
               <span className="flex-shrink-0 inline-block px-2 py-0.5 text-gray-800 text-xs font-medium bg-gray-100 rounded-full mr-1">
                 Not status yet

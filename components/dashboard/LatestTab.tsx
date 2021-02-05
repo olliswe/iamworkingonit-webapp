@@ -1,11 +1,12 @@
 import React from "react";
 import LatestStatusCard from "components/statusCard/LatestStatusCard";
+import { TTeam } from "models/types";
 
-const LatestTab = () => {
+const LatestTab = ({ team }: { team: TTeam }) => {
   return (
     <>
       <div>
-        <div className="mb-5 lg:w-2/3 sm:pr-2 flex rounded-md shadow-sm ">
+        <div className="mb-5 flex rounded-md shadow-sm ">
           <div className="relative flex items-stretch flex-grow focus-within:z-10">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg
@@ -51,22 +52,14 @@ const LatestTab = () => {
         </div>
       </div>
       <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <LatestStatusCard
-          user={{ firstName: "John", lastName: "Doe" }}
-          statusUpdate={{ status: "Refactoring dashboard" }}
-        />
-        <LatestStatusCard
-          user={{ firstName: "Mary", lastName: "Jane" }}
-          statusUpdate={{ status: "Writing tests" }}
-        />
-        <LatestStatusCard
-          user={{ firstName: "Mark", lastName: "Twain" }}
-          statusUpdate={{ status: "", type: "CLEARED" }}
-        />
-        <LatestStatusCard
-          user={{ firstName: "Mark", lastName: "Twain" }}
-          statusUpdate={null}
-        />
+        {team.users &&
+          team.users.map(user => (
+            <LatestStatusCard
+              user={user}
+              statusUpdate={user.statusupdates && user.statusupdates[0]}
+              key={user.id}
+            />
+          ))}
       </ul>
     </>
   );

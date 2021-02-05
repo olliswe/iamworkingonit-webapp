@@ -37,8 +37,8 @@ const Login = () => {
     const { error } = await signUp(data);
     if (error) {
       setError(error);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

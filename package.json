@@ -26,6 +26,7 @@
     "apollo-link-error": "^1.1.13",
     "autoprefixer": "^10.2.1",
     "clsx": "^1.1.1",
+    "date-fns": "^2.16.1",
     "deepmerge": "^4.2.2",
     "graphql": "^15.5.0",
     "jwt-decode": "^3.1.2",

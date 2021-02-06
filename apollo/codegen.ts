@@ -322,10 +322,7 @@ export type UserQuery = (
     & { team?: Maybe<(
       { __typename?: 'Team' }
       & Pick<Team, 'id' | 'teamName'>
-    )>, statusupdates?: Maybe<Array<(
-      { __typename?: 'Statusupdate' }
-      & Pick<Statusupdate, 'createdAt' | 'status'>
-    )>> }
+    )> }
   ) }
 );
 
@@ -615,10 +612,6 @@ export const UserDocument = gql`
     team {
       id
       teamName
-    }
-    statusupdates(limit: 1) {
-      createdAt
-      status
     }
   }
 }

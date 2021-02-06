@@ -11,9 +11,5 @@ query User {
       id
       teamName
     }
-    statusupdates(limit: 1) {
-      createdAt
-      status
-    }
   }
 }

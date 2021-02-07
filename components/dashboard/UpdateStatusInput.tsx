@@ -54,6 +54,7 @@ const UpdateStatusInput = () => {
           />
         </div>
         <button
+          disabled={isDisabled}
           type="submit"
           className={clsx(
             buttonClasses({ isDisabled }).button,

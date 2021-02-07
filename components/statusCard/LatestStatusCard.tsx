@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { getTimeSince } from "helpers/utils";
 import { TTeamUser, TTeamUserStatusUpdate } from "models/types";
-import { useSpring, animated } from "react-spring";
+import { animated } from "react-spring";
+import useUpdateAnimation from "hooks/useUpdateAnimation";
 
 interface ILatestStatusCard {
   user: TTeamUser;
@@ -9,29 +10,11 @@ interface ILatestStatusCard {
 }
 
 const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
-  const [statusUpdateChange, setStatusUpdateChange] = useState(0);
-  const [trigger, setTrigger] = useState(false);
-  useEffect(() => {
-    setStatusUpdateChange(prev => prev + 1);
-  }, [statusUpdate?.id]);
-
-  useEffect(() => {
-    if (statusUpdateChange > 1) {
-      setTrigger(true);
-    }
-  }, [statusUpdateChange]);
-
-  const props = useSpring({
-    to: {
-      transform: trigger ? "scale(1.05)" : "scale(1)",
-      backgroundColor: trigger ? "#FEF3C7" : "white"
-    },
-    onRest: () => setTrigger(false)
-  });
+  const animProps = useUpdateAnimation(statusUpdate);
 
   return (
     <animated.li
-      style={props}
+      style={animProps}
       className="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200 cursor-pointer border border-transparent hover:border-gray-200"
     >
       <div className="w-full flex items-center justify-between p-4 space-x-6">

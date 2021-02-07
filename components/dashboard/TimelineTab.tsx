@@ -1,64 +1,76 @@
 import React from "react";
+import { TTeam } from "models/types";
+import StatusTimelineCard from "components/statusCard/StatusTimelineCard";
+import { usePagination } from "react-use-pagination";
+import clsx from "clsx";
 
-const TimelineTab = () => {
+const buttonClass = (isDisabled: boolean) =>
+  clsx(
+    isDisabled
+      ? "text-gray-400 bg-gray-100 cursor-not-allowed"
+      : "text-gray-700 bg-white hover:bg-gray-50",
+    "relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md"
+  );
+
+const TimelineTab = ({ team }: { team: TTeam }) => {
+  const numberOfItems = (team.statusupdates || []).length;
+
+  const {
+    currentPage,
+    setNextPage,
+    setPreviousPage,
+    nextEnabled,
+    previousEnabled,
+    startIndex,
+    endIndex
+  } = usePagination({
+    totalItems: numberOfItems,
+    initialPageSize: 10
+  });
+
+  const currentItems = (team.statusupdates || []).slice(startIndex, endIndex);
+
   return (
     <>
       <ul className="divide-y divide-gray-200">
-        <li className="py-4">
-          <div className="flex space-x-3">
-            <img
-              className="h-6 w-6 rounded-full"
-              src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-              alt=""
-            />
-            <div className="flex-1 space-y-1">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium">Whitney Francis</h3>
-                <p className="text-sm text-gray-500">1h</p>
-              </div>
-              <p className="text-sm text-gray-500">
-                Deployed Workcation (2d89f0c8 in master) to production
-              </p>
-            </div>
-          </div>
-        </li>
-        <li className="py-4">
-          <div className="flex space-x-3">
-            <img
-              className="h-6 w-6 rounded-full"
-              src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-              alt=""
-            />
-            <div className="flex-1 space-y-1">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium">Whitney Francis</h3>
-                <p className="text-sm text-gray-500">1h</p>
-              </div>
-              <p className="text-sm text-gray-500">
-                Deployed Workcation (2d89f0c8 in master) to production
-              </p>
-            </div>
-          </div>
-        </li>
-        <li className="py-4">
-          <div className="flex space-x-3">
-            <img
-              className="h-6 w-6 rounded-full"
-              src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-              alt=""
-            />
-            <div className="flex-1 space-y-1">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium">Whitney Francis</h3>
-                <p className="text-sm text-gray-500">1h</p>
-              </div>
-              <p className="text-sm text-gray-500">
-                Deployed Workcation (2d89f0c8 in master) to production
-              </p>
-            </div>
-          </div>
-        </li>
+        {currentItems.map((statusUpdate, index) => (
+          <StatusTimelineCard statusUpdate={statusUpdate} key={index} />
+        ))}
       </ul>
+      <div
+        className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
+        aria-label="Pagination"
+      >
+        <div className="hidden sm:block">
+          <p className="text-sm text-gray-700">
+            Showing
+            <span className="font-medium px-1">{currentPage * 10 + 1}</span>
+            to
+            <span className="font-mediumb px-1">
+              {currentPage * 10 + 1 + currentItems.length}
+            </span>
+            of
+            <span className="font-medium px-1">{numberOfItems}</span>
+            results
+          </p>
+        </div>
+        <div className="flex-1 flex justify-between sm:justify-end">
+          <button
+            onClick={setPreviousPage}
+            disabled={!previousEnabled}
+            className={buttonClass(!previousEnabled)}
+          >
+            Previous
+          </button>
+          <button
+            onClick={setNextPage}
+            disabled={!nextEnabled}
+            className={clsx(buttonClass(!nextEnabled), "ml-3")}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </>
   );
 };

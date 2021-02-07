@@ -2,10 +2,14 @@ query Team {
   team {
     id
     teamName
-    statusupdates(limit: 1) {
+    statusupdates(limit: 50) {
       status
+      createdAt
+      id
       user {
         email
+        firstName
+        lastName
       }
     }
     users {

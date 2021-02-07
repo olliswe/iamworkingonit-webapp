@@ -1,7 +1,10 @@
 import React from "react";
-import { TUser } from "models/types";
 
-const Avatar = ({ user }: { user: TUser }) => {
+const Avatar = ({
+  user
+}: {
+  user: { firstName: string; lastName: string };
+}) => {
   return (
     <img
       className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"

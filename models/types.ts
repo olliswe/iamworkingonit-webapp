@@ -9,3 +9,6 @@ export type TTeamUser = ArrayElement<Exclude<TTeam["users"], null | undefined>>;
 export type TTeamUserStatusUpdate = ArrayElement<
   Exclude<TTeamUser["statusupdates"], null | undefined>
 >;
+export type TTeamStatusUpdate = ArrayElement<
+  Exclude<TTeam["statusupdates"], null | undefined>
+>;

@@ -291,10 +291,10 @@ export type TeamQuery = (
     & Pick<Team, 'id' | 'teamName'>
     & { statusupdates?: Maybe<Array<(
       { __typename?: 'Statusupdate' }
-      & Pick<Statusupdate, 'status'>
+      & Pick<Statusupdate, 'status' | 'createdAt' | 'id'>
       & { user?: Maybe<(
         { __typename?: 'User' }
-        & Pick<User, 'email'>
+        & Pick<User, 'email' | 'firstName' | 'lastName'>
       )> }
     )>>, users?: Maybe<Array<(
       { __typename?: 'User' }
@@ -551,10 +551,14 @@ export const TeamDocument = gql`
   team {
     id
     teamName
-    statusupdates(limit: 1) {
+    statusupdates(limit: 50) {
       status
+      createdAt
+      id
       user {
         email
+        firstName
+        lastName
       }
     }
     users {

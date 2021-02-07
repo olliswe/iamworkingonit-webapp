@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
 
     return (
       <ApolloProvider client={apolloClient}>
-        <Layout {...pageProps}>
+        <Layout  {...pageProps}>
           <Component {...pageProps} />
         </Layout>
       </ApolloProvider>

@@ -45,18 +45,18 @@ const Dashboard = () => {
           </nav>
         </div>
       </div>
-      <div className={clsx(!isTabOne && "hidden", "mt-5")}>
-        <LatestTab team={data.team} />
-      </div>
-      <div className={clsx(!isTabTwo && "hidden", "mt-5")}>
-        <TimelineTab />
-      </div>
+      {isTabOne && (
+        <div className="mt-5">
+          <LatestTab team={data.team} />
+        </div>
+      )}
+      {isTabTwo && (
+        <div className="mt-5">
+          <TimelineTab team={data.team} />
+        </div>
+      )}
     </div>
   );
 };
-
-export async function getServerSideProps() {
-  return { props: { pageName: "dashboard" } };
-}
 
 export default Dashboard;

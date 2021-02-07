@@ -1,6 +1,8 @@
 import React from "react";
 import { getTimeSince } from "helpers/utils";
 import { TTeamUser, TTeamUserStatusUpdate } from "models/types";
+import { animated } from "react-spring";
+import useUpdateAnimation from "hooks/useUpdateAnimation";
 
 interface ILatestStatusCard {
   user: TTeamUser;
@@ -8,8 +10,13 @@ interface ILatestStatusCard {
 }
 
 const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
+  const animProps = useUpdateAnimation(statusUpdate);
+
   return (
-    <li className="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200 cursor-pointer border border-transparent hover:border-gray-200">
+    <animated.li
+      style={animProps}
+      className="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200 cursor-pointer border border-transparent hover:border-gray-200"
+    >
       <div className="w-full flex items-center justify-between p-4 space-x-6">
         <div className="flex-1 truncate">
           <div className="flex items-center space-x-3">
@@ -42,7 +49,7 @@ const LatestStatusCard = ({ user, statusUpdate }: ILatestStatusCard) => {
           </div>
         </div>
       </div>
-    </li>
+    </animated.li>
   );
 };
 

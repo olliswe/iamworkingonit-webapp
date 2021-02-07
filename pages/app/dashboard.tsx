@@ -23,7 +23,7 @@ const Dashboard = () => {
   const isTabOne = !tab || tab === "team";
   const isTabTwo = tab === "updates";
 
-  const { data } = useTeamQuery();
+  const { data } = useTeamQuery({ pollInterval: 10000 });
 
   if (!data?.team) {
     return null;

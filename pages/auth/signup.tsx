@@ -6,6 +6,7 @@ import { hasEmptyField } from "helpers/utils";
 import clsx from "clsx";
 import useAuth from "hooks/useAuth";
 import { Loader } from "components/elements/Loaders";
+import { buttonClasses } from "helpers/classes";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -114,10 +115,8 @@ const Login = () => {
             <button
               type="submit"
               className={clsx(
-                "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md h-10",
-                isDisabled
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                "focus:ring-2 focus:ring-offset-2 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md h-10",
+                buttonClasses({ isDisabled }).button
               )}
               disabled={isDisabled}
             >
@@ -125,9 +124,7 @@ const Login = () => {
                 <svg
                   className={clsx(
                     "h-5 w-5",
-                    isDisabled
-                      ? "text-gray-500"
-                      : "text-yellow-500 group-hover:text-yellow-400"
+                    buttonClasses({ isDisabled }).icon
                   )}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"

@@ -59,4 +59,8 @@ const Dashboard = () => {
   );
 };
 
+export async function getServerSideProps() {
+  return { props: { pageName: "dashboard" } };
+}
+
 export default Dashboard;

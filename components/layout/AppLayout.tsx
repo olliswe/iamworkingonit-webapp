@@ -102,6 +102,7 @@ const AppLayout = ({ children, pageName }: ILayout) => {
   const { logout } = useAuth();
   const { data, loading, error } = useMe();
 
+  console.log(pageName);
   const Layout = useMemo(() => {
     switch (pageName) {
       case "setup":

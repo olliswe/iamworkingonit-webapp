@@ -40,6 +40,7 @@
     "react-spinners": "^0.10.4",
     "react-spring": "^8.0.27",
     "react-svg": "^11.2.2",
+    "react-use-pagination": "^1.1.0",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {

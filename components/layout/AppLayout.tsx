@@ -87,7 +87,7 @@ const MenuLayout = ({ children, pageName, data }: ISubLayout) => {
   );
 };
 
-const SetupLanding = ({ children, data }: ISubLayout) => {
+const SetupLayout = ({ children, data }: ISubLayout) => {
   const router = useRouter();
 
   if (data?.user.team) {
@@ -102,11 +102,10 @@ const AppLayout = ({ children, pageName }: ILayout) => {
   const { logout } = useAuth();
   const { data, loading, error } = useMe();
 
-  console.log(pageName);
   const Layout = useMemo(() => {
     switch (pageName) {
       case "setup":
-        return SetupLanding;
+        return SetupLayout;
       default:
         return MenuLayout;
     }
@@ -123,18 +122,6 @@ const AppLayout = ({ children, pageName }: ILayout) => {
 
   return (
     <>
-      <Head>
-        <title>I AM WORKING ON IT</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <link
-          rel="preload"
-          href="fonts/SaviaShadowAntipixelcomar-YoJO.ttf"
-          as="font"
-          crossOrigin=""
-        />
-        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
-      </Head>
       <div className="min-h-screen bg-gray-100">
         <Layout pageName={pageName} data={data}>
           {children}

@@ -18,23 +18,7 @@ const AuthLayout = ({ children }: { children: React.ReactElement }) => {
     return <GlobalLoading />;
   }
 
-  return (
-    <div className="min-h-screen w-screen">
-      <Head>
-        <title>I AM WORKING ON IT | Login/Signup</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <link
-          rel="preload"
-          href="fonts/SaviaShadowAntipixelcomar-YoJO.ttf"
-          as="font"
-          crossOrigin=""
-        />
-        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
-      </Head>
-      {children}
-    </div>
-  );
+  return <div className="min-h-screen w-screen">{children}</div>;
 };
 
 export default AuthLayout;

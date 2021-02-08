@@ -54,9 +54,10 @@ type Team {
 
   """Users of a Team"""
   users: [User!]
-  secret: Teamsecret!
+  secret: Teamsecret
   createdAt: DateTime!
   updatedAt: DateTime!
+  teamsecret: Teamsecret!
 }
 
 type User {

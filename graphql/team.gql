@@ -1,8 +1,12 @@
-query Team {
+query Team($statusUpdateLimit: Int!=100) {
   team {
     id
     teamName
-    statusupdates(limit: 50) {
+    secret {
+      id
+      secret
+    }
+    statusupdates(limit: $statusUpdateLimit) {
       status
       createdAt
       id

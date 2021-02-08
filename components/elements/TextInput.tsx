@@ -29,7 +29,8 @@ const TextInput = ({
           className={clsx(
             !error
               ? "shadow-sm focus:ring-yellow-500 focus:border-yellow-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              : "block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md"
+              : "block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md",
+            rest.disabled && "text-gray-400 bg-gray-100 cursor-not-allowed"
           )}
           {...rest}
         />

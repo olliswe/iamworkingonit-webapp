@@ -61,9 +61,10 @@ export type Team = {
   statusupdates?: Maybe<Array<Statusupdate>>;
   /** Users of a Team */
   users?: Maybe<Array<User>>;
-  secret: Teamsecret;
+  secret?: Maybe<Teamsecret>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+  teamsecret: Teamsecret;
 };
 
 
@@ -281,7 +282,9 @@ export type SignupMutation = (
   ) }
 );
 
-export type TeamQueryVariables = Exact<{ [key: string]: never; }>;
+export type TeamQueryVariables = Exact<{
+  statusUpdateLimit?: Scalars['Int'];
+}>;
 
 
 export type TeamQuery = (
@@ -289,7 +292,10 @@ export type TeamQuery = (
   & { team: (
     { __typename?: 'Team' }
     & Pick<Team, 'id' | 'teamName'>
-    & { statusupdates?: Maybe<Array<(
+    & { secret?: Maybe<(
+      { __typename?: 'Teamsecret' }
+      & Pick<Teamsecret, 'id' | 'secret'>
+    )>, statusupdates?: Maybe<Array<(
       { __typename?: 'Statusupdate' }
       & Pick<Statusupdate, 'status' | 'createdAt' | 'id'>
       & { user?: Maybe<(
@@ -547,11 +553,15 @@ export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
 export const TeamDocument = gql`
-    query Team {
+    query Team($statusUpdateLimit: Int! = 100) {
   team {
     id
     teamName
-    statusupdates(limit: 50) {
+    secret {
+      id
+      secret
+    }
+    statusupdates(limit: $statusUpdateLimit) {
       status
       createdAt
       id
@@ -591,6 +601,7 @@ export const TeamDocument = gql`
  * @example
  * const { data, loading, error } = useTeamQuery({
  *   variables: {
+ *      statusUpdateLimit: // value for 'statusUpdateLimit'
  *   },
  * });
  */

@@ -6,6 +6,8 @@ import {ROUTES} from "config/routes";
 import {useApollo} from "apollo/apolloClient";
 import {ApolloProvider} from "@apollo/client";
 import AuthLayout from "components/layout/AuthLayout";
+import 'react-toastify/dist/ReactToastify.css';
+import ToastContainer from "components/ToastContainer";
 
 
 const getLayout = (route: string) => {
@@ -32,6 +34,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <Layout  {...pageProps}>
           <Component {...pageProps} />
         </Layout>
+          <ToastContainer/>
       </ApolloProvider>
   );
 }

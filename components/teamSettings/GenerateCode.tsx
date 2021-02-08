@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useGenerateSecretMutation, useTeamQuery } from "apollo/codegen";
 import clsx from "clsx";
+import { toast } from "react-toastify";
 
 const GenerateCode = () => {
   const { data } = useTeamQuery();
@@ -10,9 +11,14 @@ const GenerateCode = () => {
 
   const handleClick = useCallback(e => {
     e.preventDefault();
-    generateSecret().catch((error: any) => {
-      console.log(error);
-    });
+    generateSecret()
+      .then(_ => {
+        toast.success("Secret successfully generated! 👍");
+      })
+      .catch((error: any) => {
+        toast.error("Unable to generate secret");
+        console.log(error);
+      });
   }, []);
 
   return (

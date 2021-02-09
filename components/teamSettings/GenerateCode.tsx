@@ -12,17 +12,20 @@ const GenerateCode = () => {
 
   const secret = data?.team.secret?.secret || "";
 
-  const handleClick = useCallback(e => {
-    e.preventDefault();
-    generateSecret()
-      .then(_ => {
-        toast.success("Secret successfully generated! 👍");
-      })
-      .catch((error: any) => {
-        toast.error("Unable to generate secret");
-        console.log(error);
-      });
-  }, []);
+  const handleClick = useCallback(
+    e => {
+      e.preventDefault();
+      generateSecret()
+        .then(_ => {
+          toast.success("Secret successfully generated! 👍");
+        })
+        .catch((error: any) => {
+          toast.error("Unable to generate secret");
+          console.log(error);
+        });
+    },
+    [generateSecret()]
+  );
 
   return (
     <div className="w-full">

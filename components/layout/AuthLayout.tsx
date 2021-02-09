@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import useMe from "hooks/useMe";
 import GlobalLoading from "components/GlobalLoading";
 import { ROUTES } from "config/routes";

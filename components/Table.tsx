@@ -1,12 +1,15 @@
 import React from "react";
 import { Column, useTable } from "react-table";
 
-interface ITable<TData extends object> {
+interface ITable<TData extends Record<string, unknown>> {
   columns: Column<TData>[];
   data: TData[];
 }
 
-const Table = <TData extends object>({ columns, data }: ITable<TData>) => {
+const Table = <TData extends Record<string, unknown>>({
+  columns,
+  data
+}: ITable<TData>) => {
   const tableInstance = useTable({ columns, data });
 
   const {
@@ -28,14 +31,15 @@ const Table = <TData extends object>({ columns, data }: ITable<TData>) => {
             >
               <thead className="bg-gray-50">
                 {// Loop over the header rows
-                headerGroups.map(headerGroup => (
+                headerGroups.map((headerGroup, i) => (
                   // Apply the header row props
-                  <tr {...headerGroup.getHeaderGroupProps()}>
+                  <tr {...headerGroup.getHeaderGroupProps()} key={"trh-" + i}>
                     {// Loop over the headers in each row
-                    headerGroup.headers.map(column => (
+                    headerGroup.headers.map((column, j) => (
                       // Apply the header cell props
                       <th
                         {...column.getHeaderProps()}
+                        key={"th-" + j}
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         {// Render the header
@@ -51,18 +55,19 @@ const Table = <TData extends object>({ columns, data }: ITable<TData>) => {
                 className="bg-white divide-y divide-gray-200"
               >
                 {// Loop over the table rows
-                rows.map(row => {
+                rows.map((row, i) => {
                   // Prepare the row for display
                   prepareRow(row);
                   return (
                     // Apply the row props
-                    <tr {...row.getRowProps()}>
+                    <tr {...row.getRowProps()} key={"tr-" + i}>
                       {// Loop over the rows cells
-                      row.cells.map(cell => {
+                      row.cells.map((cell, j) => {
                         // Apply the cell props
                         return (
                           <td
                             {...cell.getCellProps()}
+                            key={"td-" + j}
                             className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                           >
                             {// Render the cell contents

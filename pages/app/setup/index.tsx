@@ -27,8 +27,10 @@ const Setup = () => {
             </div>
           </div>
         </div>
-        <div className="p-3 sm:p-5">{tab === 0 && <JoinTeam />}</div>
-        <div className="p-3 sm:p-5">{tab === 1 && <CreateTeam />}</div>
+        <div className="p-3 sm:p-5">
+          {tab === 0 && <JoinTeam />}
+          {tab === 1 && <CreateTeam />}
+        </div>
       </div>
     </div>
   );

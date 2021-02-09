@@ -28,7 +28,14 @@ const TimelineTab = ({ team }: { team: TTeam }) => {
     initialPageSize: 10
   });
 
-  const currentItems = (team.statusupdates || []).slice(startIndex, endIndex);
+  const currentItems = (team.statusupdates || []).slice(
+    startIndex,
+    endIndex + 1
+  );
+
+  if (!team.statusupdates?.length) {
+    return <p className="text-sm">No status updates yet...</p>;
+  }
 
   return (
     <>

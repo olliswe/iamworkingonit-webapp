@@ -42,7 +42,7 @@ const GenerateCode = () => {
             value={secret}
             type="password"
             name="inviteCode"
-            className="focus:ring-yellow-500 focus:border-yellow-500 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300 cursor-not-allowed "
+            className="focus:ring-primary-500 focus:border-primary-500 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300 cursor-not-allowed "
             placeholder="Please generate"
           />
         </div>
@@ -70,7 +70,7 @@ const GenerateCode = () => {
         </CopyToClipboard>
         <button
           onClick={handleClick}
-          className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500"
+          className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
         >
           <span>{secret ? "Re-generate" : "Generate"}</span>
         </button>

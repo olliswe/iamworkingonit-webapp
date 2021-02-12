@@ -20,7 +20,7 @@ const Team = () => {
           <GenerateCode />
         </div>
         <div className="flex flex-1">
-          <p className="sm:pb-2 pt-1 sm:pl-5 text-sm text-yellow-500">
+          <p className="sm:pb-2 pt-1 sm:pl-5 text-sm text-primary-500">
             Invite a new team member by sharing this code with them!
           </p>
         </div>

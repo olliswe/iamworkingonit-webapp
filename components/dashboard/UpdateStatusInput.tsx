@@ -49,7 +49,7 @@ const UpdateStatusInput = () => {
             type="text"
             name="status"
             value={status}
-            className="focus:ring-yellow-500 focus:border-yellow-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
+            className="focus:ring-primary-500 focus:border-primary-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
             placeholder="Update your status"
           />
         </div>
@@ -58,7 +58,7 @@ const UpdateStatusInput = () => {
           type="submit"
           className={clsx(
             buttonClasses({ isDisabled }).button,
-            "-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border text-sm font-medium rounded-r-md focus:ring-1 focus:ring-2 focus:ring-border-yellow-500"
+            "-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border text-sm font-medium rounded-r-md focus:ring-1 focus:ring-2 focus:ring-border-primary-500"
           )}
         >
           <svg

@@ -1,11 +1,11 @@
 import { ToastContainer as OrigContainer } from "react-toastify";
 
 const contextClass = {
-  success: "bg-yellow-500",
+  success: "bg-primary-500",
   error: "bg-red-600",
   info: "bg-gray-600",
   warning: "bg-orange-400",
-  default: "bg-yellow-500",
+  default: "bg-primary-500",
   dark: "bg-white-600 font-gray-300"
 } as const;
 

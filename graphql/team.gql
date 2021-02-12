@@ -2,10 +2,6 @@ query Team($statusUpdateLimit: Int!=100) {
   team {
     id
     teamName
-    secret {
-      id
-      secret
-    }
     statusupdates(limit: $statusUpdateLimit) {
       status
       createdAt

@@ -5,7 +5,7 @@ import UpdateStatusInput from "components/dashboard/UpdateStatusInput";
 
 const LatestTab = ({ team }: { team: TTeam }) => {
   return (
-    <>
+    <div className="relative min-h-96">
       <UpdateStatusInput />
       <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {team.users &&
@@ -17,7 +17,12 @@ const LatestTab = ({ team }: { team: TTeam }) => {
             />
           ))}
       </ul>
-    </>
+      {team.users?.length === 1 && (
+        <div className="absolute bottom-0 right-2 sm:h-72 h-36">
+          <img src="/images/nowork.svg" alt="me" className="h-full" />
+        </div>
+      )}
+    </div>
   );
 };
 

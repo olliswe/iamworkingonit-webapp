@@ -34,7 +34,11 @@ const TimelineTab = ({ team }: { team: TTeam }) => {
   );
 
   if (!team.statusupdates?.length) {
-    return <p className="text-sm">No status updates yet...</p>;
+    return (
+      <div className="flex mt-20 justify-center">
+        <img src="/images/feed.svg" className="h-48" />
+      </div>
+    );
   }
 
   return (
@@ -54,7 +58,7 @@ const TimelineTab = ({ team }: { team: TTeam }) => {
             <span className="font-medium px-1">{currentPage * 10 + 1}</span>
             to
             <span className="font-mediumb px-1">
-              {currentPage * 10 + 1 + currentItems.length}
+              {currentPage * 10 + currentItems.length}
             </span>
             of
             <span className="font-medium px-1">{numberOfItems}</span>

@@ -1,21 +1,20 @@
 import React, { useCallback } from "react";
-import { useGenerateSecretMutation, useTeamQuery } from "apollo/codegen";
+import { useGenerateSecretMutation } from "apollo/codegen";
 import clsx from "clsx";
 import { toast } from "react-toastify";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const GenerateCode = () => {
-  const { data } = useTeamQuery();
   const [generateSecret] = useGenerateSecretMutation({
     refetchQueries: ["Team"]
   });
 
-  const secret = data?.team.secret?.secret || "";
+  const secret = "";
 
   const handleClick = useCallback(
     e => {
       e.preventDefault();
-      generateSecret()
+      generateSecret({ variables: { email: "" } })
         .then(_ => {
           toast.success("Secret successfully generated! 👍");
         })
@@ -24,7 +23,7 @@ const GenerateCode = () => {
           console.log(error);
         });
     },
-    [generateSecret()]
+    [generateSecret]
   );
 
   return (
@@ -54,7 +53,7 @@ const GenerateCode = () => {
             disabled={!secret}
             className={clsx(
               "-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none",
-              !data?.team.secret?.secret && "cursor-not-allowed"
+              !secret && "cursor-not-allowed"
             )}
           >
             <svg

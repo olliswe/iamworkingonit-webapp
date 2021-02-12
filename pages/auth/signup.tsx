@@ -16,7 +16,8 @@ const Login = () => {
     password: "",
     repeatPassword: "",
     firstName: "",
-    lastName: ""
+    lastName: "",
+    signupCode: ""
   });
   const { signUp } = useAuth();
 
@@ -100,6 +101,13 @@ const Login = () => {
               onChange={handleChange}
             />
           </div>
+          <TextInput
+            placeholder="Signup code"
+            type="text"
+            name="signupCode"
+            value={data.signupCode}
+            onChange={handleChange}
+          />
 
           <div className="flex items-center justify-between">
             <div className="text-sm">

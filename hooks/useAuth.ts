@@ -36,17 +36,23 @@ const useAuth = () => {
     email,
     password,
     firstName,
-    lastName
+    lastName,
+    signupCode
   }: {
     email: string;
     password: string;
     firstName: string;
     lastName: string;
+    signupCode: string;
   }) => {
-    console.log("signing up");
     try {
       await signupMutation({
-        variables: { email, password, firstName, lastName }
+        variables: { email, password, firstName, lastName },
+        context: {
+          headers: {
+            "x-signup-token": signupCode
+          }
+        }
       });
       const res = await loginMutation({ variables: { email, password } });
       const accessToken = res.data?.login.accessToken;

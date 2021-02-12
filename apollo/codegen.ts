@@ -61,10 +61,10 @@ export type Team = {
   statusupdates?: Maybe<Array<Statusupdate>>;
   /** Users of a Team */
   users?: Maybe<Array<User>>;
-  secret?: Maybe<Teamsecret>;
+  /** Secrets of a Team */
+  teamsecrets?: Maybe<Array<Teamsecret>>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  teamsecret: Teamsecret;
 };
 
 
@@ -158,6 +158,11 @@ export type MutationCreateTeamArgs = {
   createTeamInput: CreateTeamInput;
 };
 
+
+export type MutationGenerateSecretArgs = {
+  email: Scalars['String'];
+};
+
 export type CreateUserInput = {
   /** User First Name */
   firstName: Scalars['String'];
@@ -224,7 +229,9 @@ export type CreateTeamMutation = (
   ) }
 );
 
-export type GenerateSecretMutationVariables = Exact<{ [key: string]: never; }>;
+export type GenerateSecretMutationVariables = Exact<{
+  email: Scalars['String'];
+}>;
 
 
 export type GenerateSecretMutation = (
@@ -292,10 +299,7 @@ export type TeamQuery = (
   & { team: (
     { __typename?: 'Team' }
     & Pick<Team, 'id' | 'teamName'>
-    & { secret?: Maybe<(
-      { __typename?: 'Teamsecret' }
-      & Pick<Teamsecret, 'id' | 'secret'>
-    )>, statusupdates?: Maybe<Array<(
+    & { statusupdates?: Maybe<Array<(
       { __typename?: 'Statusupdate' }
       & Pick<Statusupdate, 'status' | 'createdAt' | 'id'>
       & { user?: Maybe<(
@@ -412,8 +416,8 @@ export type CreateTeamMutationHookResult = ReturnType<typeof useCreateTeamMutati
 export type CreateTeamMutationResult = Apollo.MutationResult<CreateTeamMutation>;
 export type CreateTeamMutationOptions = Apollo.BaseMutationOptions<CreateTeamMutation, CreateTeamMutationVariables>;
 export const GenerateSecretDocument = gql`
-    mutation GenerateSecret {
-  generateSecret {
+    mutation GenerateSecret($email: String!) {
+  generateSecret(email: $email) {
     secret
   }
 }
@@ -433,6 +437,7 @@ export type GenerateSecretMutationFn = Apollo.MutationFunction<GenerateSecretMut
  * @example
  * const [generateSecretMutation, { data, loading, error }] = useGenerateSecretMutation({
  *   variables: {
+ *      email: // value for 'email'
  *   },
  * });
  */
@@ -557,10 +562,6 @@ export const TeamDocument = gql`
   team {
     id
     teamName
-    secret {
-      id
-      secret
-    }
     statusupdates(limit: $statusUpdateLimit) {
       status
       createdAt

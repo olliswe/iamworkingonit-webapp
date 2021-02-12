@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { getTabClassName } from "helpers/classes";
+import CreateTeam from "components/setup/CreateTeam";
+import JoinTeam from "components/setup/JoinTeam";
 
 const Setup = () => {
   const [tab, setTab] = useState<0 | 1>(0);
@@ -26,7 +28,8 @@ const Setup = () => {
           </div>
         </div>
         <div className="p-3 sm:p-5">
-          <p>To join a team, please enter the invite link:</p>
+          {tab === 0 && <JoinTeam />}
+          {tab === 1 && <CreateTeam />}
         </div>
       </div>
     </div>

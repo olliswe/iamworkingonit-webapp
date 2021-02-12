@@ -34,7 +34,7 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <Link href="/">
-            <h1 className="font-logo text-center text-5xl text-yellow-500 cursor-pointer">
+            <h1 className="font-logo text-center text-5xl text-primary-500 cursor-pointer">
               I AM WORKING ON IT
             </h1>
           </Link>
@@ -60,7 +60,7 @@ const Login = () => {
                 autoComplete="email"
                 value={data.email}
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 onChange={handleChange}
               />
@@ -75,7 +75,7 @@ const Login = () => {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={data.password}
                 onChange={handleChange}
@@ -86,7 +86,7 @@ const Login = () => {
           <div className="flex items-center justify-between">
             <div className="text-sm">
               <Link href={ROUTES.SIGNUP}>
-                <a className="font-medium text-yellow-600 hover:text-yellow-500">
+                <a className="font-medium text-primary-600 hover:text-primary-500">
                   Sign up instead
                 </a>
               </Link>
@@ -94,7 +94,7 @@ const Login = () => {
             <div className="text-sm">
               <a
                 href="#"
-                className="font-medium text-yellow-600 hover:text-yellow-500"
+                className="font-medium text-primary-600 hover:text-primary-500"
               >
                 Forgot your password?
               </a>

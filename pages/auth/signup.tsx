@@ -47,7 +47,7 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <Link href="/">
-            <h1 className="font-logo text-center text-5xl text-yellow-500 cursor-pointer">
+            <h1 className="font-logo text-center text-5xl text-primary-500 cursor-pointer">
               I AM WORKING ON IT
             </h1>
           </Link>
@@ -64,7 +64,7 @@ const Login = () => {
             onChange={handleChange}
           />
           <div>
-            <div className="text-yellow-500 text-xs">
+            <div className="text-primary-500 text-xs">
               (More than 4 chars, at least one upper-cased, at least one special
               char)
             </div>
@@ -104,7 +104,7 @@ const Login = () => {
           <div className="flex items-center justify-between">
             <div className="text-sm">
               <Link href={ROUTES.LOGIN}>
-                <a className="font-medium text-yellow-600 hover:text-yellow-500">
+                <a className="font-medium text-primary-600 hover:text-primary-500">
                   Sign in instead
                 </a>
               </Link>

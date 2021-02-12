@@ -5,7 +5,6 @@ import DesktopProfileMenu from "components/navigation/DesktopProfileMenu";
 import MobileMenu from "components/navigation/MobileMenu";
 import PageHeader from "components/layout/PageHeader";
 import MainContent from "components/navigation/MainContent";
-import Head from "next/head";
 import Link from "next/link";
 import ClickAwayListener from "react-click-away-listener";
 import { ROUTES } from "config/routes";

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5000",
+    "dev": "env-cmd -f .env.production.local next dev -p 5000",
+    "dev:local": "env-cmd -f .env.development.local next dev -p 5000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext ts --ext tsx --ext js",
@@ -61,6 +62,7 @@
     "@types/react-table": "^7.0.28",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",

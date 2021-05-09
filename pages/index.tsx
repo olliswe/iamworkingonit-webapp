@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import AnimatedTerm from "components/AnimatedTerm";
 import WorkingOnCard from "components/WorkingOnCard";
 import { ReactSVG } from "react-svg";
+import useMe from "hooks/useMe";
+import Link from "next/link";
+import { ROUTES } from "config/routes";
 
 export default function Landing() {
   const [addCard, setAddCard] = useState(false);
+  const { isAuthenticated } = useMe();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -16,10 +20,19 @@ export default function Landing() {
 
   return (
     <div className="p-3 pb-20 sm:pb-0 flex flex-col">
-      <div>
+      <div className="flex justify-between items-center">
         <span className="text-5xl sm:text-7xl text-white font-logo">
           I AM WORKING ON IT
         </span>
+        {isAuthenticated ? (
+          <Link href={ROUTES.DASHBOARD} passHref>
+            <a className="text-primary-800 h-5 underline">Dashboard</a>
+          </Link>
+        ) : (
+          <Link href={ROUTES.LOGIN} passHref>
+            <a className="text-primary-800 h-5 underline">Login</a>
+          </Link>
+        )}
       </div>
       <div className="sm:mt-16 sm:ml-7 mt-5 ml-1">
         <span className="text-4xl sm:text-5xl text-white font-logo">
